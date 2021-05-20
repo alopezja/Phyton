@@ -1,1 +1,6 @@
 print ("Hola Mundo")
+print ('Hola Mundo')
+print ("Hola","Adiós")
+print ("Hola",'Adión')
+print ("Hola",end=" este es mi ")
+print ("Mundo")
