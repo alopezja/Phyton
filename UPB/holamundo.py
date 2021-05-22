@@ -2,7 +2,7 @@ print ("Hola Mundo")
 print ('Hola Mundo')
 print ("Hola","Adiós")
 print ("Hola",'Adión')
-print ("Hola",end=" este es mi ")
+print ("Hola",end=" este es mi ") #tomar lo de la segunda línea y llevarlo a la primera
 print ("Mundo")
 
 c = 1
@@ -45,3 +45,14 @@ suma = suma + y
 p = "El resultado de la operacón = " 
 resultado = p + str(suma)
 print(resultado)
+
+
+# -- May 21 --
+#Concatenar
+a = "Hola"
+b = " Mundo"
+c = a + b
+print (c)
+
+print ("Hola a todos \nbuenas tardes")
+
