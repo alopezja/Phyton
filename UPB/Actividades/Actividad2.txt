@@ -1,0 +1,37 @@
+a. ¿Para qué sirve la tecla tabulación?
+
+R// Para generar 4 espacios o la identación en el editor
+
+b. ¿Por qué es importante la identación de un programa en Python?
+
+R// Python funciona con identaciones para identificar las diferentes estructuras de código sin necesidad de utilizar en muchas ocasiones paréntesis, llaves o inicios y cierres de estructuras lo que lo hace más sencillo para trabajar
+
+c. ¿Qué es un shortcut o atajo?
+
+R// Es una combinación generalmente de teclas que permite utilizar de una manera más sencilla comandos para reducir el tiempo o activar alguna funcionalidad del editor
+
+d. ¿Qué es la terminal?, ¿Para qué se usa en el proceso de creación de un programa?
+
+R// La terminal es la herramienta que permite visualizar la ejecución del código y nos permite interactuar con el mísmo, es decir, interpreta el código realizado en el lenguaje y lo transforma en una salida comprensible para el usuario y su interacción.
+
+e. ¿Qué es un comentario? Realice un comentario de múltiples líneas
+
+R// Un comentario nos permite agregar líneas con observaciones que no serán parte del código o de la ejecución del mismo. Básicamente se utilizan como ayuda para identificar referencias específicas del código
+
+"""
+Para realizar un comentario de varias líneas en Pyhton basta con utilizar la tripe comilla (""") al iniciar y al finalizar el comentario, con esto, el editor entiende que esas líneas no serán ejecutadas.
+
+El ejemplo preciso está en estos dos parrafos previos
+"""
+
+f. ¿Para qué sirven las extensiones? Consulte e instale 3 extensiones útiles a la hora de programar con Python.
+
+R// Las extensiones sirven para ayudarnos en diferentes temas, tanto visuales como funcionales, que de una u otra vez, nos permitirá reducir tiempo o hacer mucho más eficiente nuestro código, inclusive nos permite integrar funcionalidades externas a nuestro código.
+
+1. Bracket Pair Colorizer: Ayuda a distinguir los diferentes caracteres con colores para saber cual es el que abre y cual es el que cierra. Sirve mucho a la hora de tener argumentos dentro de paréntesis, llaves, etc.
+2. Material Icon Theme: Identifica los iconos de las diferentes aplicaciones o archivos que vamos a desarrollar, es decir, si vamos a realizar un archivo con la extensión de Pyhton, cambia el icono por uno más vistoso que nos ayuda más fácilmente a identificar que tipo de archivo tenemos.
+3. Todo Tree: Nos permite enlistar las diferentes tareas que dejamos en las observaciones del código, lo único que debemos hacer es incluir la palabra TODO dentro de los comentarios.
+
+g. ¿Qué es Case Sensitive?,¿Por qué es importante en programación?
+
+R// El Case Sensitive se trata básicamente de casos en los diferentes editores en donde son sensibles a escribir la misma palabra pero que al tener caracteres entre mayúsculas y minúsculas, el sistema los va a identificar como cosas completamente diferentes. Es importante ya que hay muchas palabras reservadas que podríamos utilizar en nuestro código simplemente con cambiar la configuración de mayúsculas, además, es muy importante saber como funcionan para evitar errores en nuestro código.
