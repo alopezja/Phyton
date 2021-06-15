@@ -1,0 +1,43 @@
+	1. Realizar un listado de ingredientes para comprar
+	2. Salir a la tienda
+	3. Seleccionar los ingredientes
+	4. Comprar los ingredientes
+	5. Regresar a la casa
+	6. Alistar el lugar de trabajo con ingredientes y materiales
+	7. Pesar la harina (275 g)
+	8. Pesar el azúcar (100 g)
+	9. Medir el aceite (150 ml)
+	10. Separar una cucharada de polvo de hornear
+	11. Iniciar la preparación
+	12. Pelar los bananos
+	13. Poner los bananos en el recipiente
+	14. Botar a la basura la cáscara de los bananos
+	15. Macerar los bananos con un tenedor
+	16. Agregar azúcar
+	17. Mezclar (preferiblemente con batidora)
+	18. Agregar el aceite
+	19. Mezclar (preferiblemente con batidora)
+	20. Agregar los huevos
+	21. Mezclar completamente hasta que la mezcla sea lo más homogénea posible (preferiblemente con batidora)
+	22. Añadir esencia de Vainilla
+	23. Mezclar
+	24. Agregar polvo de hornear a la harina
+	25. Agregar la harina y el polvo de hornear a la preparación
+	26. Mezclar (preferiblemente con batidora)
+	27. Engrasar el molde
+	28. Harinar el molde engrasado
+	29. Verter la mezcla en el molde
+	30. Precalentar el horno a 180°
+	31. Colocar la mezcla en el horno precalentado
+	32. Cocinar durante 40 minutos aproximadamente
+	33. Revisar periódicamente la preparación
+	34. Al terminarse el tiempo pinchar con un palo de madera para revisar que esté completamente horneado (El palo de madera debe salir limpio). 
+	35. Si no es está completamente horneado, cocinar nuevamente por otros 5 minutos a igual temperatura
+	36. Una vez esté listo retirar del horno
+	37. Dejar enfriar
+	38. Desmoldar
+	39. Limpiar materiales
+	40. Guardar materiales utilizados
+	41. Porcionar la torta
+	42. Servir
+    43. Disfrutar
