@@ -1,9 +1,38 @@
 from os import system
-import re
+import os
 system("clear")
 
 x = 51634
 y = 43615
+coordenada = []
+
+def ingresarCoordenada (coordenadaInicial):
+    coordenadaDuplicada = list(coordenadaInicial)
+    for x in range (0,3):
+        coordenadaDuplicada.append([])
+        lat = input("Ingrese la latitud: ")
+        while lat == "" or lat == " ":
+            print("Error")
+            exit()
+        lat = float(lat)
+        if lat <= 6.306 and lat >= 5.888:
+            lon = input("Ingrese la longitud: ")
+            while lon == "" or lon == " ":
+                print("Error")
+                exit()
+            lon = float(lon)
+            if lon <= -72.321 and lon >= -72.552:
+                coordenadaDuplicada[x].insert(0,lat)
+                coordenadaDuplicada[x].insert(0,lon)
+            else:
+                print("Error coordenada")
+                exit()
+        else:
+            print("Error coordenada")
+            exit()
+    
+    return coordenadaDuplicada
+
 
 print("Bienvenido al sistema de ubicación para zonas públicas WIFI”")
 usuario = int(input("Digite el usuario: "))
@@ -49,19 +78,9 @@ if usuario == x:
                             else:
                                 print("Error")
                     elif opcion == 2:
-                        
-                        latitud = input("Digite la latitud: ")
-                        while ("." in latitud) == False:
-                            print("Digite latitud válida")
-                            latitud = input("Digite la latitud: ")
-                        
-                        longitud = input("Digite la longitud: ")
-                        while ("." in longitud) == False:
-                            print("Digite longitud válida")
-                            longitud = input("Digite la longitud: ")
-
-
-
+                        if coordenada==[]:
+                            coordenada = ingresarCoordenada(coordenada)
+                            print(coordenada)
                     elif opcion == 6:
                         try:
                             favorita = int(input("Seleccione opción favorita"))

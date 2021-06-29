@@ -24,6 +24,7 @@ print("Edan" in quesos)
 for queso in quesos:
     print("-> ",queso)
 
+print("\n")
 for i in range(len(numeros)):
     numeros[i] = numeros[i]*2
 print(numeros)
