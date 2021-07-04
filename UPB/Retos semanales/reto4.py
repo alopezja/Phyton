@@ -7,7 +7,8 @@ x = 51634
 y = 43615
 coordenada = []
 listaDistancias = []
-restauranteActual = None
+wifiActual = None
+distanciaparatiempo = None
 radio = 6372.795477598
 coordenadaPrueba =  [[6.250,-72.450],
                     [6.202,-72.402],
@@ -106,31 +107,32 @@ def actualizarCoordenadas(choice, coordenadaInicial):
     
     return coordenadaDuplicada #En caso éxito retornamos la nueva lista
 
-def mostrarRestauranteFav(coordenadaInicial):
+def mostrarWifiFav(coordenadaInicial):
     if coordenadaInicial==[]:
-        print("No hay restaurantes favoritos ingresados")
+        print("Error sin registro de coordenadas")
         exit()
     else:
-        imprimirRestauranteFav(coordenadaInicial)
+        imprimirWifiFav(coordenadaInicial)
 
-def imprimirRestauranteFav(coordenadaInicial):
+def imprimirWifiFav(coordenadaInicial):
     coordenadaDuplicada=list(coordenadaInicial)
     print("Las coordenadas guardadas actualmente son:")
     for x in range(0,len(coordenadaDuplicada)):
         print(f"{x+1}. Coordenada [Latitud,Longitud]: ['{coordenadaDuplicada[x][0]}', '{coordenadaDuplicada[x][1]}']")
-    opcion=int(input("Por favor seleccione restaurante actaual: "))
+    opcion=int(input("Por favor seleccione wifi actaual: "))
     if opcion == 1 or opcion == 2 or opcion == 3:
-        global restauranteActual
-        restauranteActual = coordenadaPrueba[opcion-1]
+        global wifiActual
+        wifiActual = coordenada[opcion-1]
         prepararDatos(opcion,coordenadaDuplicada,listaPredefinida)
     else:
-        print("Restaurante no existe")
+        print("Error ubicación")
+        exit()
 
-def prepararDatos(indRestActual, coordinadaInicial, coordFijas):
+def prepararDatos(indWifiActual, coordinadaInicial, coordFijas):
     listaDuplicada = list(coordinadaInicial)
     listaDuplicadaFija = list(coordFijas)
-    lat1 = listaDuplicada[indRestActual-1][0]
-    lon1 = listaDuplicada[indRestActual-1][1]
+    lat1 = listaDuplicada[indWifiActual-1][0]
+    lon1 = listaDuplicada[indWifiActual-1][1]
     lat1 = convertirRadianes(lat1)
     lon1 = convertirRadianes(lon1)
     for x in range (0,len(listaDuplicadaFija)):
@@ -160,6 +162,7 @@ def formulaDistancia(lat1, lon1, listaRadianes):
         aux = asin(aux)
         aux = (2*radio)*aux
         aux = aux*1000
+        aux = round(aux)
 
         listaDistancias.append(aux)
 
@@ -176,32 +179,46 @@ def imprimirMensajeCerca(min1,min2,baseDatos):
     for x in range(0,4):
         baseDatos[x][0] = degrees(baseDatos[x][0])
         baseDatos[x][1] = degrees(baseDatos[x][1])
+
+    for x in range(0,len(listaPredefinida)):
+        if listaPredefinida[min1][0] == listaPredefinida[x][0] and listaPredefinida[min1][1] == listaPredefinida[x][1]:
+            if listaPredefinida[x][2] > listaPredefinida[min1][2]:
+                min1 = listaPredefinida.index(listaPredefinida[x])
+
+    global distanciaparatiempo
+
     if baseDatos[min1][2] > baseDatos[min2][2]:
-        print(f"1. El restaurante más cercano está en la latitud: '{baseDatos[min1][0]}' longitud: '{baseDatos[min1][1]}', está a {listaDistancias[min1]} metros y tiene {baseDatos[min1][2]} platos")
-        print(f"2. El segundo restaurante más cercano está en la latitud: '{baseDatos[min2][0]}' longitud: '{baseDatos[min2][1]}', está a {listaDistancias[min2]} metros y tiene {baseDatos[min2][2]} platos")
-        opcionDestino = int(input("Por favor seleccione el restaurante al cual desea ir para recibir indicaciones: "))
+        print(f"1. El wifi más cercano está en la latitud: '{baseDatos[min1][0]}' longitud: '{baseDatos[min1][1]}', está a {listaDistancias[min1]} metros y tiene {baseDatos[min1][2]} usuarios conectados")
+        print(f"2. El segundo wifi más cercano está en la latitud: '{baseDatos[min2][0]}' longitud: '{baseDatos[min2][1]}', está a {listaDistancias[min2]} metros y tiene {baseDatos[min2][2]} usuarios conectados")
+        opcionDestino = int(input("Por favor seleccione el wifi al cual desea ir para recibir indicaciones: "))
         if opcionDestino==1:
+            distanciaparatiempo = listaDistancias[min1]
             indicaciones(baseDatos[min1])
         elif opcionDestino==2:
+            distanciaparatiempo = listaDistancias[min2]
             indicaciones(baseDatos[min2])
         else:
-            print("Restaurante destivo inválido")
+            print("Error zona wifi")
+            exit()
     else:
-        print(f"1. El restaurante más cercano está en la latitud: '{baseDatos[min2][0]}' longitud: '{baseDatos[min2][1]}', está a {listaDistancias[min2]} metros y tiene {baseDatos[min2][2]} platos")
-        print(f"2. El segundo restaurante más cercano está en la latitud: '{baseDatos[min1][0]}' longitud: '{baseDatos[min1][1]}', está a {listaDistancias[min1]} metros y tiene {baseDatos[min1][2]} platos")
-        opcionDestino = int(input("Por favor seleccione el restaurante al cual desea ir para recibir indicaciones: "))
+        print(f"1. El wifi más cercano está en la latitud: '{baseDatos[min2][0]}' longitud: '{baseDatos[min2][1]}', está a {listaDistancias[min2]} metros y tiene {baseDatos[min2][2]} usuarios conectados")
+        print(f"2. El segundo wifi más cercano está en la latitud: '{baseDatos[min1][0]}' longitud: '{baseDatos[min1][1]}', está a {listaDistancias[min1]} metros y tiene {baseDatos[min1][2]} usuarios conectados")
+        opcionDestino = int(input("Por favor seleccione el wifi al cual desea ir para recibir indicaciones: "))
         if opcionDestino==1:
-            indicaciones(restauranteActual,baseDatos[min2])
+            distanciaparatiempo = listaDistancias[min2]
+            indicaciones(baseDatos[min2])
         elif opcionDestino==2:
-            indicaciones(restauranteActual,baseDatos[min1])
+            distanciaparatiempo = listaDistancias[min1]
+            indicaciones(baseDatos[min1])
         else:
-            print("Restaurante destivo inválido")
+            print("Error zona wifi")
+            exit()
 
-def indicaciones(restauranteDestino):
-    latOrigen = restauranteActual[0]
-    lonOrigen = restauranteActual[1]
-    latDestino = restauranteDestino[0]
-    lonDestino = restauranteDestino[1]
+def indicaciones(wifiDestino):
+    latOrigen = wifiActual[0]
+    lonOrigen = wifiActual[1]
+    latDestino = wifiDestino[0]
+    lonDestino = wifiDestino[1]
 
     if latOrigen > latDestino:
         txt1=("el Sur")
@@ -225,14 +242,36 @@ def indicaciones(restauranteDestino):
         print("Ya está en el destino")
     else:
         print(f"Debe dirigirse primero hacia {txt1} y luego hacia {txt2}")    
+    calcularTiempo()
 
 def calcularTiempo():
-    pass
+    tiempo1 = "segundos"
+    tiempo2 = "segundos"
+    if distanciaparatiempo == 0:
+        print("")
+    else:
+        bus = distanciaparatiempo/16.67
+        pie = distanciaparatiempo/0.483
+        bici = distanciaparatiempo/3.33        
+        moto = distanciaparatiempo/19.44
+        auto = distanciaparatiempo/20.83
 
-mostrarRestauranteFav(coordenadaPrueba)
+        if bus > 60:
+            bus = bus/60
+            tiempo1 = "minutos"
+            
+        if bici > 60:
+            bici = bici/60
+            tiempo2 = "minutos"
+            
+        print(f"Se tardará aproximadamente {round(bus)} {tiempo1} en bus y {round(bici)} {tiempo2} en bicicleta")
+
+# while True:
+#     listaDistancias = []
+#     mostrarwifiFav(coordenadaPrueba)
 
 #?#################################################################################
-"""
+
 print("Bienvenido al sistema de ubicación para zonas públicas WIFI”")
 usuario = int(input("Digite el usuario: "))
 if usuario == x:
@@ -256,6 +295,7 @@ if usuario == x:
                 for i in range(7):
                     print(str(i+1),". ",menu[i])
                 try:
+                    listaDistancias = []
                     opcion = int(input("Elija una opción"))
                     if opcion < 1 or opcion > 7:
                         print("Error")
@@ -281,6 +321,8 @@ if usuario == x:
                             coordenada = ingresarCoordenada(coordenada)
                         else:
                             imprimirCoordenada(coordenada)
+                    elif opcion == 3:
+                            mostrarWifiFav(coordenada)
                     elif opcion == 6:
                         try:
                             favorita = int(input("Seleccione opción favorita"))
@@ -325,4 +367,4 @@ if usuario == x:
 else:
     system("clear")
     print("Error")
-    """
+    
