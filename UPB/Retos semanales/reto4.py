@@ -7,6 +7,7 @@ x = 51634
 y = 43615
 coordenada = []
 listaDistancias = []
+restauranteActual = None
 radio = 6372.795477598
 coordenadaPrueba =  [[6.250,-72.450],
                     [6.202,-72.402],
@@ -119,6 +120,8 @@ def imprimirRestauranteFav(coordenadaInicial):
         print(f"{x+1}. Coordenada [Latitud,Longitud]: ['{coordenadaDuplicada[x][0]}', '{coordenadaDuplicada[x][1]}']")
     opcion=int(input("Por favor seleccione restaurante actaual: "))
     if opcion == 1 or opcion == 2 or opcion == 3:
+        global restauranteActual
+        restauranteActual = coordenadaPrueba[opcion-1]
         prepararDatos(opcion,coordenadaDuplicada,listaPredefinida)
     else:
         print("Restaurante no existe")
@@ -168,7 +171,6 @@ def ordenarDistancias(distancias):
     distanciasDuplicadas.pop(min1)
     min2 = distancias.index(min(distanciasDuplicadas))
     imprimirMensajeCerca(min1,min2,listaPredefinida)
-    
 
 def imprimirMensajeCerca(min1,min2,baseDatos):
     for x in range(0,4):
@@ -176,10 +178,56 @@ def imprimirMensajeCerca(min1,min2,baseDatos):
         baseDatos[x][1] = degrees(baseDatos[x][1])
     if baseDatos[min1][2] > baseDatos[min2][2]:
         print(f"1. El restaurante más cercano está en la latitud: '{baseDatos[min1][0]}' longitud: '{baseDatos[min1][1]}', está a {listaDistancias[min1]} metros y tiene {baseDatos[min1][2]} platos")
-        print(f"2. El siguiente restaurante está en la latitud: '{baseDatos[min2][0]}' longitud: '{baseDatos[min2][1]}', está a {listaDistancias[min2]} metros y tiene {baseDatos[min2][2]} platos")
+        print(f"2. El segundo restaurante más cercano está en la latitud: '{baseDatos[min2][0]}' longitud: '{baseDatos[min2][1]}', está a {listaDistancias[min2]} metros y tiene {baseDatos[min2][2]} platos")
+        opcionDestino = int(input("Por favor seleccione el restaurante al cual desea ir para recibir indicaciones: "))
+        if opcionDestino==1:
+            indicaciones(baseDatos[min1])
+        elif opcionDestino==2:
+            indicaciones(baseDatos[min2])
+        else:
+            print("Restaurante destivo inválido")
     else:
         print(f"1. El restaurante más cercano está en la latitud: '{baseDatos[min2][0]}' longitud: '{baseDatos[min2][1]}', está a {listaDistancias[min2]} metros y tiene {baseDatos[min2][2]} platos")
-        print(f"2. El siguiente restaurante está en la latitud: '{baseDatos[min1][0]}' longitud: '{baseDatos[min1][1]}', está a {listaDistancias[min1]} metros y tiene {baseDatos[min1][2]} platos")
+        print(f"2. El segundo restaurante más cercano está en la latitud: '{baseDatos[min1][0]}' longitud: '{baseDatos[min1][1]}', está a {listaDistancias[min1]} metros y tiene {baseDatos[min1][2]} platos")
+        opcionDestino = int(input("Por favor seleccione el restaurante al cual desea ir para recibir indicaciones: "))
+        if opcionDestino==1:
+            indicaciones(restauranteActual,baseDatos[min2])
+        elif opcionDestino==2:
+            indicaciones(restauranteActual,baseDatos[min1])
+        else:
+            print("Restaurante destivo inválido")
+
+def indicaciones(restauranteDestino):
+    latOrigen = restauranteActual[0]
+    lonOrigen = restauranteActual[1]
+    latDestino = restauranteDestino[0]
+    lonDestino = restauranteDestino[1]
+
+    if latOrigen > latDestino:
+        txt1=("el Sur")
+    elif latOrigen < latDestino:
+        txt1=("el Norte")
+    else:
+        txt1=("")
+
+    if lonOrigen > lonDestino:
+        txt2=("el Occidente")
+    elif lonOrigen < lonDestino:
+        txt2=("el Oriente")
+    else:
+        txt2=("")
+
+    if txt1 == "" and txt2 != "":
+        print(f"Debe ir hacia {txt2}")
+    elif txt2 == "" and txt1 != "":
+        print(f"Debe ir hacia {txt1}")
+    elif txt1 == "" and txt2 == "":
+        print("Ya está en el destino")
+    else:
+        print(f"Debe dirigirse primero hacia {txt1} y luego hacia {txt2}")    
+
+def calcularTiempo():
+    pass
 
 mostrarRestauranteFav(coordenadaPrueba)
 
