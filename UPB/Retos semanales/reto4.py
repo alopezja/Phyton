@@ -163,7 +163,23 @@ def formulaDistancia(lat1, lon1, listaRadianes):
     ordenarDistancias(listaDistancias)
 
 def ordenarDistancias(distancias):
-    print(distancias)
+    distanciasDuplicadas = list(distancias)
+    min1 = distanciasDuplicadas.index(min(distanciasDuplicadas))
+    distanciasDuplicadas.pop(min1)
+    min2 = distancias.index(min(distanciasDuplicadas))
+    imprimirMensajeCerca(min1,min2,listaPredefinida)
+    
+
+def imprimirMensajeCerca(min1,min2,baseDatos):
+    for x in range(0,4):
+        baseDatos[x][0] = degrees(baseDatos[x][0])
+        baseDatos[x][1] = degrees(baseDatos[x][1])
+    if baseDatos[min1][2] > baseDatos[min2][2]:
+        print(f"1. El restaurante más cercano está en la latitud: '{baseDatos[min1][0]}' longitud: '{baseDatos[min1][1]}', está a {listaDistancias[min1]} metros y tiene {baseDatos[min1][2]} platos")
+        print(f"2. El siguiente restaurante está en la latitud: '{baseDatos[min2][0]}' longitud: '{baseDatos[min2][1]}', está a {listaDistancias[min2]} metros y tiene {baseDatos[min2][2]} platos")
+    else:
+        print(f"1. El restaurante más cercano está en la latitud: '{baseDatos[min2][0]}' longitud: '{baseDatos[min2][1]}', está a {listaDistancias[min2]} metros y tiene {baseDatos[min2][2]} platos")
+        print(f"2. El siguiente restaurante está en la latitud: '{baseDatos[min1][0]}' longitud: '{baseDatos[min1][1]}', está a {listaDistancias[min1]} metros y tiene {baseDatos[min1][2]} platos")
 
 mostrarRestauranteFav(coordenadaPrueba)
 
